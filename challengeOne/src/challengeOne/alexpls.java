@@ -1,28 +1,51 @@
 package challengeOne;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 public class alexpls {
 
 	public static void main(String[] args)
 	{
-		int[] challengeOne = new int[10000];
+		int[] challengeOne = new int[100];
 		for (int i = 0; i < challengeOne.length; i++)
 		{
-			challengeOne[i] = (int) (Math.random() * 10001);
-			if (challengeOne[i] >= 10000)
-			{
-				//System.out.println(challengeOne[i]);
-			}
+			challengeOne[i] = (int) (Math.random() * 101);
 		}
+		
+		int[] challengeTwo = new int[10000];
+		challengeTwo = challengeOne;
+		
 		long startTime = System.nanoTime(); //record the startTime
-		System.out.println("Quick Sort Runtime Test:");
-		bucket.sort(challengeOne);(challengeOne, 0, 10000);
+		System.out.println("Bucket Runtime Test:");
+		challengeOne = countingSort(challengeOne, 0, 100); //?
 		long endTime = System.nanoTime(); //record stopTime
 		long totalTime = endTime - startTime; //calculate totalTime
 		System.out.println("Time Taken in milliseconds: " + totalTime / 1000000.0000000);
 		
+		for (int num : challengeOne)
+		{
+			System.out.println(num);
+		}
+		
+		startTime = System.nanoTime(); //record the startTime
+		System.out.println("Bucket Runtime Test:");
+		challengeTwo = countingSort(challengeTwo, 0, 100); //?
+		endTime = System.nanoTime(); //record stopTime
+		totalTime = endTime - startTime; //calculate totalTime
+		System.out.println("Time Taken in milliseconds: " + totalTime / 1000000.0000000);
+		
+		for (int num : challengeTwo)
+		{
+			System.out.println(num);
+		}
+		
+		System.out.println(Arrays.equals(challengeOne, challengeTwo));
 	}
 	
-	public static void countingSort(int[] list1, int rangeL, int rangeH)	
+	public static int[] countingSort(int[] list1, int rangeL, int rangeH)	
 	{
 		int[] count = new int[rangeH - rangeL + 1];
 		for (int i = 0; i < list1.length; i++)
@@ -43,7 +66,7 @@ public class alexpls {
 			sorted[count[list1[i]]] = list1[i];
 			count[list1[i]]--;
 		}
-		list1 = sorted;
+		return sorted;
 	}
 	
 	public static int partition(int[] list, int front, int back)
@@ -62,6 +85,57 @@ public class alexpls {
 		//System.out.println(i);
 		swap(list, i, front);
 		return i;
+	}
+	
+	public static void insertionSort(int[] list1) {
+		int j = 0;
+		for (int i = 0; i <= list1.length; i++)
+		{
+			for (int k = j-1; k >= 0; k--)
+			{
+				if (list1[k] > list1[j])
+				{
+					swap(list1, k, j);
+					j--;
+				}
+			}
+			j = i;
+		}
+	}
+	
+	public static void Bsort(int[] a, int maxVal) {
+	      int [] bucket=new int[maxVal+1];
+	 
+	      for (int i=0; i<bucket.length; i++) {
+	         bucket[i]=0;
+	      }
+	 
+	      for (int i=0; i<a.length; i++) {
+	         bucket[a[i]]++;
+	      }
+	 
+	      int outPos=0;
+	      for (int i=0; i<bucket.length; i++) {
+	         for (int j=0; j<bucket[i]; j++) {
+	            a[outPos++]=i;
+	         }
+	      }
+	   }
+	
+	public static void bucketSort(int a[], int n) {
+	    int i, j, k, SIZE = 10001;
+	    
+	    int buckets[] = new int[SIZE];
+	    
+	    for(i = 0; i < SIZE; ++i)
+	        buckets[i] = 0;
+	    
+	    for(i = 0; i < n; ++i)
+	        ++buckets[a[i]];
+	        
+	    for(i = 0, j = 0; j < SIZE; ++j)
+	        for(k = buckets[j]; k > 0; --k)
+	            a[i++] = j;
 	}
 	
 	public static void quickSort(int[] list1, int front, int back)
