@@ -1,50 +1,6 @@
-package challengeOne;
+package sorts;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
-public class alexpls {
-
-	public static void main(String[] args)
-	{
-		int[] challengeOne = new int[100];
-		for (int i = 0; i < challengeOne.length; i++)
-		{
-			challengeOne[i] = (int) (Math.random() * 101);
-		}
-		
-		int[] challengeTwo = new int[10000];
-		challengeTwo = challengeOne;
-		
-		long startTime = System.nanoTime(); //record the startTime
-		System.out.println("Bucket Runtime Test:");
-		challengeOne = countingSort(challengeOne, 0, 100); //?
-		long endTime = System.nanoTime(); //record stopTime
-		long totalTime = endTime - startTime; //calculate totalTime
-		System.out.println("Time Taken in milliseconds: " + totalTime / 1000000.0000000);
-		
-		for (int num : challengeOne)
-		{
-			System.out.println(num);
-		}
-		
-		startTime = System.nanoTime(); //record the startTime
-		System.out.println("Bucket Runtime Test:");
-		challengeTwo = countingSort(challengeTwo, 0, 100); //?
-		endTime = System.nanoTime(); //record stopTime
-		totalTime = endTime - startTime; //calculate totalTime
-		System.out.println("Time Taken in milliseconds: " + totalTime / 1000000.0000000);
-		
-		for (int num : challengeTwo)
-		{
-			System.out.println(num);
-		}
-		
-		System.out.println(Arrays.equals(challengeOne, challengeTwo));
-	}
-	
+public class Sorts {
 	public static int[] countingSort(int[] list1, int rangeL, int rangeH)	
 	{
 		int[] count = new int[rangeH - rangeL + 1];
