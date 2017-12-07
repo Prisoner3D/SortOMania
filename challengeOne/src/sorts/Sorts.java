@@ -130,21 +130,26 @@ public class Sorts {
 		return str.charAt(d);
 	}
 	
-	public static void quickSort(int[] list1, int front, int back)
+	public static int quickSort(String[] list1, int front, int back)
 	{
+		int intLoc = -1;
 		if (front >= back)
 		{
-			return;
+			return intLoc;
 		}
 		else
 		{
 			int PIVOTindex = partition(list1, front, back);
+			if (list1[PIVOTindex].equals("abgrj"))
+			{
+				intLoc = PIVOTindex;
+			}
 			quickSort(list1, front, PIVOTindex);
 			quickSort(list1, PIVOTindex + 1, back);
 		}
 	}
 	
-	public static void quickSort(String[] list1, int front, int back)
+	public static void quickSort(int[] list1, int front, int back)
 	{
 		if (front >= back)
 		{

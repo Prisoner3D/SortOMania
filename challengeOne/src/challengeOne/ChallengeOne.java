@@ -9,38 +9,37 @@ public class ChallengeOne {
 		//Add removing two lowest times
 		//Add median
 		long time = 0;
-		for (int i = 0; i < 1; i++)
+		for (int i = 0; i < 100; i++)
 		{
-			int[] challengeOne = new int[100];
+			int[] challengeOne = new int[10000];
 			for (int j = 0; j < challengeOne.length; j++)
 			{
-				challengeOne[j] = (int) (Math.random() * 100);
+				challengeOne[j] = (int) (Math.random() * 10000);
 			}
-			
 			
 			long startTime = System.nanoTime();
 					
 			//Sorts.Bsort(challengeOne, 10000);
-			challengeOne(challengeOne);
+			System.out.println(challengeOne(challengeOne));
 			
 			long endTime = System.nanoTime(); //record stopTime
 			long totalTime = endTime - startTime; //calculate totalTime
 			System.out.println("Time Taken in milliseconds: " + totalTime / 1000000.0000000);
-			System.out.println(challengeOne.length);
+			//System.out.println(challengeOne.length);
 			for (int num : challengeOne)
 			{
-				System.out.println(num);
+				//System.out.println(num);
 			}
 			
 			time += totalTime;
 		}
-		System.out.println(time / 1);
+		System.out.println(time / 100);
 	}
 	
 	public static int challengeOne(int[] dataSet)
 	{
 		int[] copy = dataSet;
-		int[] count = new int[dataSet.length];
+		int[] count = new int[dataSet.length]; // Should only work for challengeOne
 		for (int i = 0; i < dataSet.length; i++)
 		{
 			count[copy[i]]++;
@@ -52,16 +51,14 @@ public class ChallengeOne {
 		int[] sorted = new int[dataSet.length];
 		for (int i = 0; i < dataSet.length; i++)
 		{
-			sorted[count[copy[i]]] = copy[i];
+			sorted[count[copy[i]] - 1] = copy[i];
 			count[copy[i]]--;
 		}
-
 		for (int i = 0; i < dataSet.length; i++)
 		{
 			dataSet[i] = sorted[i];
 		}
-		return median(dataSet); //Shorten maybe
-
+		return ((dataSet[dataSet.length/2])+(dataSet[(dataSet.length/2)-1]))/2;
 	}
 	
 	public static int median(int[] list1)

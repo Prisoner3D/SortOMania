@@ -47,10 +47,17 @@ public class ChallengeTwo {
 		random = random + alphabet.charAt(r.nextInt(N));
 		
 		
-		//Sorts.quickSort(dataSet,0,dataSet.length); //1.59
-		Sorts.quick3Way(dataSet); //1.56
+		Sorts.quickSort(dataSet,0,dataSet.length); //1.59
+		//Sorts.quick3Way(dataSet); //1.56
 		//Burst.sort(dataSet); //1.138
 
+		for (int i = 0; i < dataSet.length; i++)
+		{
+			if (dataSet[i].equals("Hhvjw"))
+			{
+				return i;
+			}
+		}
 		return -1;
 	}
 }
